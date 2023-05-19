@@ -1,8 +1,6 @@
 
 import 'dart:convert';
 
-
-
 // Map 형식으로 데이터 변환하기
 jsonToMap() {
   String jsonStr = '{"id": 1, "title": "HELLO", "completed": false}';
