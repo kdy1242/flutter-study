@@ -22,7 +22,11 @@ class LoginPage extends GetView<LoginController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 50),
+                Text(
+                  "Group Chat",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 16),
                 TextField(
                   controller: controller.emailController,
                   decoration: InputDecoration(
@@ -53,32 +57,9 @@ class LoginPage extends GetView<LoginController> {
                   ),
                 ),
                 TextButton(
-                    onPressed: controller.signup,
-                    child: Text('회원가입')
+                  onPressed: controller.signup,
+                  child: Text('회원가입')
                 ),
-                SizedBox(height: 8),
-                GestureDetector(
-                  onTap: controller.signInWithGoogle,
-                  child: Container(
-                    width: double.infinity,
-                    height: 48,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    child: Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(FontAwesomeIcons.google),
-                          SizedBox(width: 8),
-                          Text('Sign in with Google'),
-                        ],
-                      )
-                    ),
-                  ),
-                )
               ],
             ),
           ),

@@ -27,7 +27,19 @@ class SignupPage extends GetView<SignupController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 50),
+                Text(
+                  "Group Chat",
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 16),
+                TextField(
+                  controller: controller.nameController,
+                  decoration: InputDecoration(
+                    labelText: '이름',
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+                SizedBox(height: 16),
                 TextField(
                   controller: controller.emailController,
                   decoration: InputDecoration(

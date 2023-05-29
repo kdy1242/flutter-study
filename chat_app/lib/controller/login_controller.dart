@@ -12,6 +12,4 @@ class LoginController extends GetxController {
   login() => AuthController().login(emailController.text, pwController.text);
 
   signup() => Get.toNamed(AppRoutes.signup);
-
-  signInWithGoogle() => AuthController().signInWithGoogle();
 }

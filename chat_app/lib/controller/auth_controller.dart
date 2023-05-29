@@ -62,10 +62,7 @@ class AuthController extends GetxController {
   }
 
   // 회원가입
-  signup(String email, String pw) => AuthService().signup(email, pw);
-
-  // 구글 로그인
-  signInWithGoogle() => AuthService().signInWithGoogle();
+  signup(String name, String email, String pw) => AuthService().signup(name, email, pw);
 
   @override
   onInit() {
@@ -74,15 +71,7 @@ class AuthController extends GetxController {
       user(value);
       if (value != null) {
         // 유저가 있는 상태
-        if (user.value!.metadata.creationTime!.add(Duration(seconds: 1)).isAfter(user.value!.metadata.lastSignInTime!)) {    // 계정 생성 후 첫 로그인
-          log('${user.value!.metadata.creationTime}');
-          log('${user.value!.metadata.lastSignInTime}');
-          Get.offAllNamed(AppRoutes.setName);
-        } else {
-          log('${user.value!.metadata.creationTime}');
-          log('${user.value!.metadata.lastSignInTime}');
-          Get.offAllNamed(AppRoutes.main);
-        }
+        Get.offAllNamed(AppRoutes.main);
       } else {
         // 유저가 없는 상태
         Get.offAllNamed(AppRoutes.login);
