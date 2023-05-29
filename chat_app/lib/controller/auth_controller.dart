@@ -5,11 +5,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../model/user.dart';
 import '../util/app_routes.dart';
 import '../service/auth_service.dart';
 
 class AuthController extends GetxController {
   final Rxn<User> user = Rxn<User>();
+  final Rxn<UserModel> userData = Rxn<UserModel>();
 
   // 로그인
   login(String id, String pw) => AuthService().login(id, pw);

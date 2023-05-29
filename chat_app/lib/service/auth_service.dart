@@ -49,7 +49,6 @@ class AuthService {
     if (userDocSnapshot.exists) {
       // 문서가 이미 존재하는 경우 업데이트
       await userDocRef.update({
-        'email': user.email,
         'name': user.displayName,
         'profileImg': user.photoURL,
       });
@@ -60,6 +59,7 @@ class AuthService {
         'email': user.email,
         'name': user.displayName,
         'profileImg': user.photoURL,
+        'groups': [],
       });
     }
   }

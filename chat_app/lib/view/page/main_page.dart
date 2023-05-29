@@ -1,9 +1,10 @@
 
-import 'package:chat_app/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MainPage extends StatelessWidget {
+import '../../controller/main_controller.dart';
+
+class MainPage extends GetView<MainController> {
   const MainPage({Key? key}) : super(key: key);
   static const String route = '/main';
 
@@ -20,9 +21,7 @@ class MainPage extends StatelessWidget {
         children: [
           Text('main'),
           TextButton(
-            onPressed: (){
-              Get.find<AuthController>().logout();
-            },
+            onPressed: controller.logout,
             child: Text('logout'),
           )
         ],
