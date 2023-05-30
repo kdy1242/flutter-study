@@ -7,7 +7,7 @@ class UserModel {
   final String email;
   final String name;
   final String profileImg;
-  final List<String> groups;
+  final List groups;
 
   UserModel({
     required this.uid,
@@ -17,50 +17,28 @@ class UserModel {
     required this.groups,
   });
 
-  factory UserModel.fromFirebase(User? firebaseUser) {
-    if (firebaseUser == null) return UserModel(uid: '', email: '', name: '', profileImg: '', groups: []);
+  Map<String, dynamic> toMap() {
+    return {
+      'uid': this.uid,
+      'email': this.email,
+      'name': this.name,
+      'profileImg': this.profileImg,
+      'groups': this.groups,
+    };
+  }
 
+  factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-      uid: firebaseUser.uid,
-      email: firebaseUser.email!,
-      name: firebaseUser.displayName!,
-      profileImg: firebaseUser.photoURL!,
-      groups: [],
+      uid: map['uid'] as String,
+      email: map['email'] as String,
+      name: map['name'] as String,
+      profileImg: map['profileImg'] as String,
+      groups: map['groups'] as List,
     );
   }
 
-  Future<void> saveToFirestore() async {
-    try {
-      final userRef = FirebaseFirestore.instance.collection('users').doc(uid);
-      await userRef.set({
-        'email': email,
-        'name': name,
-        'profileImg': profileImg,
-        'groups': groups,
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  static Future<UserModel?> fromFirestore(String uid) async {
-    try {
-      final userSnapshot = await FirebaseFirestore.instance.collection('users').doc(uid).get();
-      if (userSnapshot.exists) {
-        final userData = userSnapshot.data()!;
-        return UserModel(
-          uid: uid,
-          email: userData['email'],
-          name: userData['name'],
-          profileImg: userData['profileImg'],
-          groups: List<String>.from(userData['groups']),
-        );
-      } else {
-        return null;
-      }
-    } catch (e) {
-      print(e);
-      return null;
-    }
+  @override
+  String toString() {
+    return 'UserModel{uid: $uid, email: $email, name: $name, profileImg: $profileImg, groups: $groups}';
   }
 }

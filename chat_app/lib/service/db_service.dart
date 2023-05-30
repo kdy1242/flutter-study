@@ -21,8 +21,7 @@ class DBService {
 
   // 유저데이터 가져오기
   Future gettingUserData(String email) async {
-    QuerySnapshot snapshot =
-    await userCollection.where("uid", isEqualTo: uid).get();
+    QuerySnapshot snapshot = await userCollection.where("email", isEqualTo: email).get();
     return snapshot;
   }
 
