@@ -1,4 +1,5 @@
 
+import 'package:chat_app/util/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -64,6 +65,7 @@ class MainPage extends GetView<MainController> {
             ),
             ListTile(
               onTap: () {
+                Get.toNamed(AppRoutes.profile);
               },
               contentPadding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
@@ -81,7 +83,7 @@ class MainPage extends GetView<MainController> {
                   builder: (context) {
                     return AlertDialog(
                       title: const Text("Logout"),
-                      content: const Text("Are you sure you want to logout?"),
+                      content: const Text("정말 로그아웃 하시겠습니까?"),
                       actions: [
                         IconButton(
                           onPressed: () {
