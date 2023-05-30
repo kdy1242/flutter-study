@@ -12,10 +12,20 @@ class MainPage extends GetView<MainController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: false,
-        automaticallyImplyLeading: false,   // 자동 뒤로가기 버튼 생성 비활성화
+        centerTitle: true,
         backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         elevation: 0,
+        title: Text('Groups'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+              onPressed: controller.search,
+              icon: Icon(Icons.search),
+            ),
+          )
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -93,8 +103,7 @@ class MainPage extends GetView<MainController> {
                     );
                   });
                 },
-                contentPadding:
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                 leading: const Icon(Icons.exit_to_app),
                 title: const Text(
                   "Logout",

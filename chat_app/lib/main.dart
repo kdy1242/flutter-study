@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'controller/group_controller.dart';
 import 'firebase_options.dart';
 
 import 'controller/auth_controller.dart';
@@ -10,7 +12,6 @@ import 'controller/signup_controller.dart';
 import 'controller/main_controller.dart';
 import 'util/app_pages.dart';
 import 'util/app_routes.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         Get.lazyPut(() => LoginController(), fenix: true);
         Get.lazyPut(() => SignupController(), fenix: true);
         Get.lazyPut(() => MainController(), fenix: true);
+        Get.lazyPut(() => GroupController(), fenix: true);
       }),
       getPages: AppPages.pages,
       initialRoute: AppRoutes.login,
