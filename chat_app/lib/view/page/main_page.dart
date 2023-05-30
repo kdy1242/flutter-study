@@ -40,7 +40,7 @@ class MainPage extends GetView<MainController> {
               height: 15,
             ),
             Text(
-              controller.userData != null ? controller.userData!.name : 'null',
+              controller.userData.name,
               textAlign: TextAlign.center,
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -111,16 +111,80 @@ class MainPage extends GetView<MainController> {
                 ),
               )
             ],
-          )),
-      body: Center(child: Column(
-        children: [
-          Text('main'),
-          TextButton(
-            onPressed: controller.logout,
-            child: Text('logout'),
-          )
-        ],
-      )),
+        )
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text('main'),
+            TextButton(
+              onPressed: controller.logout,
+              child: Text('logout'),
+            )
+          ],
+        )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          popUpDialog(context);
+        },
+        elevation: 0,
+        child: const Icon(Icons.add, color: Colors.white, size: 30),
+      ),
     );
+  }
+
+  popUpDialog(BuildContext context) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: ((context, setState) {
+            return AlertDialog(
+              title: const Text(
+                "Create a group",
+                textAlign: TextAlign.left,
+              ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: controller.createGroupController,
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text("CANCEL"),
+                ),
+                ElevatedButton(
+                  onPressed: controller.createGroup,
+                  // onPressed: () async {
+                  //   if (groupName != "") {
+                  //     setState(() {
+                  //       _isLoading = true;
+                  //     });
+                  //     DatabaseService(
+                  //         uid: FirebaseAuth.instance.currentUser!.uid)
+                  //         .createGroup(userName,
+                  //         FirebaseAuth.instance.currentUser!.uid, groupName)
+                  //         .whenComplete(() {
+                  //       _isLoading = false;
+                  //     });
+                  //     Navigator.of(context).pop();
+                  //     showSnackbar(
+                  //         context, Colors.green, "Group created successfully.");
+                  //   }
+                  // },
+                  child: const Text("CREATE"),
+                )
+              ],
+            );
+          }));
+        });
   }
 }

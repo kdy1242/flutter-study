@@ -31,11 +31,11 @@ class DBService {
   }
 
   // 그룹 생성
-  Future createGroup(String id, String groupName) async {
+  Future createGroup(String groupName) async {
     DocumentReference groupDocumentReference = await groupCollection.add({
       "groupName": groupName,
       "groupIcon": "",
-      "admin": "${id}",
+      "admin": "$uid",
       "members": [],
       "groupId": "",
       "recentMessage": "",
