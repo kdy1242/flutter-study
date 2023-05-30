@@ -23,6 +23,7 @@ class MainController extends GetxController {
 
 
   getUserGroup() async {
+    groupList([]);
     var groupIdList = await DBService(uid: user.uid).getUserGroups();
     log('groupIdList ${groupIdList}');
     if (groupIdList.length > 0) {
@@ -38,11 +39,11 @@ class MainController extends GetxController {
   createGroup() async {
     await DBService(uid: user.uid).createGroup(createGroupController.text);
     Get.back();
+    getUserGroup();
     Get.snackbar(
       '그룹 생성',
       '그룹이 성공적으로 생성되었습니다.',
     );
-    getUserGroup();
   }
 
   @override
