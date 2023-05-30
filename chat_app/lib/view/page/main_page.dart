@@ -1,5 +1,6 @@
 
 import 'package:chat_app/util/app_routes.dart';
+import 'package:chat_app/view/widget/group_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -116,15 +117,14 @@ class MainPage extends GetView<MainController> {
         )
       ),
       body: Center(
-        child: Column(
-          children: [
-            Text('main'),
-            TextButton(
-              onPressed: controller.logout,
-              child: Text('logout'),
-            )
-          ],
-        )
+        child: Obx(
+          () => ListView.builder(
+            itemCount: controller.groupList.length,
+            itemBuilder: (context, index) {
+              return GroupTile(group: controller.groupList[index]);
+            }
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

@@ -27,7 +27,11 @@ class DBService {
 
   // 유저 그룹 가져오기
   getUserGroups() async {
-    return userCollection.doc(uid).snapshots();
+    DocumentSnapshot userDoc = await userCollection.doc(uid).get();
+    if (userDoc.exists) {
+      var groupList = userDoc.get('groups');
+      return groupList;
+    }
   }
 
   // 그룹 생성
@@ -62,6 +66,10 @@ class DBService {
       .collection("messages")
       .orderBy("time")
       .snapshots();
+  }
+
+  getGroupById(String groupId) async {
+    return groupCollection.doc(groupId).get();
   }
 
   Future getGroupAdmin(String groupId) async {
