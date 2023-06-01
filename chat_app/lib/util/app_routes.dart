@@ -1,4 +1,5 @@
 
+import '../view/page/chat_page.dart';
 import '../view/page/login_page.dart';
 import '../view/page/profile_page.dart';
 import '../view/page/signup_page.dart';
@@ -11,4 +12,5 @@ class AppRoutes {
   static const signup = SignupPage.route;
   static const search = SearchPage.route;
   static const profile = ProfilePage.route;
+  static const chat = ChatPage.route;
 }

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../model/group.dart';
+import '../../util/app_routes.dart';
 
 class GroupTile extends StatelessWidget {
   const GroupTile({Key? key, required this.group}) : super(key: key);
@@ -13,7 +14,7 @@ class GroupTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(() => ChatPage(group));
+        Get.toNamed(AppRoutes.chat, arguments: [group]);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
