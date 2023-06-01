@@ -37,6 +37,7 @@ class ChatPage extends GetView<ChatController> {
           Obx(
             () => Expanded(
               child: ListView.builder(
+                controller: controller.scrollController,
                 itemCount: controller.chats.length,
                 itemBuilder: (context, index) {
                   Message chat = controller.chats[index];

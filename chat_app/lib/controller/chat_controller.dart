@@ -17,6 +17,7 @@ class ChatController extends GetxController {
   TextEditingController messageController = TextEditingController();
   RxList chats = [].obs;
   User user = FirebaseAuth.instance.currentUser!;
+  ScrollController scrollController = ScrollController();
 
   UserModel get userData => Get.find<AuthController>().userData!;
 
@@ -40,6 +41,12 @@ class ChatController extends GetxController {
       update(); // GetX에게 상태 업데이트를 알림
       log('chats => ${chats}');
     });
+
+    ever(chats, (_) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        scrollController.jumpTo(scrollController.position.maxScrollExtent);
+      });
+    });
   }
 
   void sendMessage(String groupId) {
@@ -57,11 +64,15 @@ class ChatController extends GetxController {
 
   bool sentByMe(String sender) {
     try {
-      log('sentByMe => ${userData.name == sender}');
       return userData.name == sender;
     } catch (e) {
-      log('sentByMe => false');
       return false;
     }
+  }
+
+  @override
+  void onClose() {
+    scrollController.dispose();
+    super.onClose();
   }
 }
