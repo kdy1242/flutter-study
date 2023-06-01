@@ -1,10 +1,13 @@
 
 import 'dart:developer';
 
+import 'package:chat_app/controller/auth_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../model/user.dart';
 import '../service/db_service.dart';
 
 class ChatController extends GetxController {
@@ -15,6 +18,8 @@ class ChatController extends GetxController {
   TextEditingController messageController = TextEditingController();
   RxString admin = RxString('');
   RxList<DocumentSnapshot> chats = <DocumentSnapshot>[].obs;
+
+  UserModel get userData => Get.find<AuthController>().userData!;
 
   ChatController({this.groupId});
 
@@ -39,15 +44,15 @@ class ChatController extends GetxController {
     });
   }
 
-  void sendMessage() {
+  void sendMessage(String groupId) {
     if (messageController.text.isNotEmpty) {
       Map<String, dynamic> chatMessageMap = {
         "message": messageController.text,
-        "sender": userName,
+        "sender": userData.name,
         "time": DateTime.now(),
       };
 
-      DBService().sendMessage(groupId!, chatMessageMap);
+      DBService().sendMessage(groupId, chatMessageMap);
       messageController.clear();
     }
   }

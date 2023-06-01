@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../controller/chat_controller.dart';
 import '../../model/group.dart';
+import '../../service/db_service.dart';
 import '../widget/message_tile.dart';
 import 'group_info_page.dart';
 
@@ -70,7 +71,16 @@ class ChatPage extends GetView<ChatController> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller.sendMessage();
+                    controller.sendMessage(group.groupId);
+                    if (controller.messageController.text.isNotEmpty) {
+                      Map<String, dynamic> chatMessageMap = {
+                        "message": controller.messageController.text,
+                        "sender": controller.userData.name,
+                        "time": DateTime.now(),
+                      };
+
+                      DBService().sendMessage(group.groupId, chatMessageMap);
+                    }
                   },
                   child: Container(
                     height: 50,
