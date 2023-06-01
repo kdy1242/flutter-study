@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'controller/chat_controller.dart';
 import 'controller/group_controller.dart';
 import 'firebase_options.dart';
 
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         Get.lazyPut(() => SignupController(), fenix: true);
         Get.lazyPut(() => MainController(), fenix: true);
         Get.lazyPut(() => GroupController(), fenix: true);
+        Get.lazyPut(() => ChatController(), fenix: true);
       }),
       getPages: AppPages.pages,
       initialRoute: AppRoutes.login,

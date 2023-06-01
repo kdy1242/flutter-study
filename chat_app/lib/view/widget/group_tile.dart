@@ -1,5 +1,7 @@
 
+import 'package:chat_app/view/page/chat_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../model/group.dart';
 
@@ -11,7 +13,7 @@ class GroupTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-
+        Get.to(() => ChatPage(group));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),

@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:chat_app/model/group.dart';
 import 'package:chat_app/service/db_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,12 @@ class GroupController extends GetxController {
         .then((value) {
       isJoined(value);
     });
+  }
+
+  getUser(String uid) async {
+    var res = await FirebaseFirestore.instance.collection('users').doc(uid).get();
+    log('res = ${res.data()}');
+    return res.data();
   }
 
   // onTapJoin() async {

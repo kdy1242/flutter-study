@@ -26,12 +26,13 @@ class MainController extends GetxController {
     groupList([]);
     var groupIdList = await DBService(uid: user.uid).getUserGroups();
     log('groupIdList ${groupIdList}');
+    var groups = [];
     if (groupIdList.length > 0) {
       for (var groupId in groupIdList) {
         var mapGroup = await DBService().getGroupById(groupId);
-        log('mapGroup ${mapGroup.data()}');
-        groupList.add(Group.fromMap(mapGroup.data()));
+        groups.add(Group.fromMap(mapGroup.data()));
       }
+      groupList(groups);
       log('groupList ${groupList}');
     }
   }
