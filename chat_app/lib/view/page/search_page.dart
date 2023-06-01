@@ -1,6 +1,7 @@
 
 import 'dart:developer';
 
+import 'package:chat_app/view/widget/search_group_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -59,7 +60,7 @@ class SearchPage extends GetView<GroupController> {
                 shrinkWrap: true,
                 itemCount: controller.resultList.value!.length,
                 itemBuilder: (context, index) {
-                  return GroupTile(group: controller.resultList.value![index]);
+                  return SearchGroupTile(group: controller.resultList.value![index]);
                 }
               ) : Container()
           )

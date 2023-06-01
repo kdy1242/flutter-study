@@ -116,14 +116,14 @@ class MainPage extends GetView<MainController> {
             ],
         )
       ),
-      body: Center(
-        child: Obx(
-          () => ListView.builder(
-            itemCount: controller.groupList.length,
-            itemBuilder: (context, index) {
-              return GroupTile(group: controller.groupList[index]);
-            }
-          ),
+      body: Obx(
+        () => ListView.builder(
+          reverse: true,
+          shrinkWrap: true,
+          itemCount: controller.groupList.length,
+          itemBuilder: (context, index) {
+            return GroupTile(group: controller.groupList[index]);
+          }
         ),
       ),
       floatingActionButton: FloatingActionButton(

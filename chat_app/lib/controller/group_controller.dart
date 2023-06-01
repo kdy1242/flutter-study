@@ -35,22 +35,4 @@ class GroupController extends GetxController {
     log('res = ${res.data()}');
     return res.data();
   }
-
-  // onTapJoin() async {
-  //   await DBService(uid: user!.uid).toggleGroupJoin(group.groupId);
-  //   if (isJoined) {
-  //     setState(() {
-  //       isJoined = !isJoined;
-  //     });
-  //     showSnackbar(context, Colors.green, "Successfully joined he group");
-  //     Future.delayed(const Duration(seconds: 2), () {
-  //       // 페이지 이동 (채팅페이지)
-  //     });
-  //   } else {
-  //     setState(() {
-  //       isJoined = !isJoined;
-  //       showSnackbar(context, Colors.red, "Left the group $groupName");
-  //     });
-  //   }
-  // }
 }
