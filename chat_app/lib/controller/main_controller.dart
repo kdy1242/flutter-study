@@ -6,6 +6,7 @@ import 'package:chat_app/util/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../model/group.dart';
 import '../service/db_service.dart';
@@ -16,6 +17,7 @@ class MainController extends GetxController {
   UserModel get userData => Get.find<AuthController>().userData!;
   TextEditingController createGroupController = TextEditingController();
   RxList groupList = [].obs;
+  RefreshController refreshController = RefreshController(initialRefresh: false);
 
   logout() => AuthController().logout();
 
@@ -45,6 +47,11 @@ class MainController extends GetxController {
       '그룹 생성',
       '그룹이 성공적으로 생성되었습니다.',
     );
+  }
+
+  void onRefresh() async {
+    await getUserGroup();
+    refreshController.refreshCompleted();
   }
 
   @override

@@ -37,6 +37,10 @@ class GroupTile extends StatelessWidget {
             "${group.recentMessage}",
             style: const TextStyle(fontSize: 13),
           ),
+          trailing: Text(
+            "${group.recentMessageTime}",
+            style: const TextStyle(fontSize: 13),
+          ),
         ),
       ),
     );
