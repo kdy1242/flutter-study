@@ -25,23 +25,31 @@ class MyHomePage extends StatelessWidget {
   static const platform = MethodChannel('com.example.test_flutter');
 
   // 네이티브 메서드 호출
-  void getBatteryLevel() async {
-    String batteryLevel;
+  Future<String> getBatteryLevel() async {
     try {
       final int result = await platform.invokeMethod('getBatteryLevel');
-      batteryLevel = '배터리: $result%';
+      return '배터리: $result%';
     } on PlatformException catch (e) {
-      batteryLevel = '실패: ${e.message}';
+      return '실패: ${e.message}';
     }
-    log(batteryLevel);
   }
 
   @override
   Widget build(BuildContext context) {
-    getBatteryLevel();
     return Scaffold(
       appBar: AppBar(
         title: Text("Method Channel Test"),
+      ),
+      body: Center(
+        child: FutureBuilder(
+          future: getBatteryLevel(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return Text(snapshot.data!);
+            }
+            return CircularProgressIndicator();
+          },
+        ),
       ),
     );
   }
