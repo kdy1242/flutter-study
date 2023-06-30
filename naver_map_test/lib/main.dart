@@ -29,21 +29,16 @@ class NaverMapApp extends StatelessWidget {
   }
 }
 
-class NaverMapSection extends StatefulWidget {
+class NaverMapSection extends StatelessWidget {
   const NaverMapSection({Key? key}) : super(key: key);
 
   @override
-  _NaverMapSectionState createState() => _NaverMapSectionState();
-}
-
-class _NaverMapSectionState extends State<NaverMapSection> {
-  late NaverMapController _mapController;
-
-  // NaverMapController 객체의 비동기 작업 완료를 나타내는 Completer 생성
-  final Completer<NaverMapController> mapControllerCompleter = Completer();
-
-  @override
   Widget build(BuildContext context) {
+    late NaverMapController _mapController;
+
+    // NaverMapController 객체의 비동기 작업 완료를 나타내는 Completer 생성
+    final Completer<NaverMapController> mapControllerCompleter = Completer();
+
     return NaverMap(
       options: const NaverMapViewOptions(
         indoorEnable: true,             // 실내 맵 사용 가능 여부 설정
@@ -55,6 +50,6 @@ class _NaverMapSectionState extends State<NaverMapSection> {
         mapControllerCompleter.complete(controller);  // Completer에 지도 컨트롤러 완료 신호 전송
         log("onMapReady", name: "onMapReady");
       },
-    );
+    );;
   }
 }
