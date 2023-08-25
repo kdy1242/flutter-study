@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bebda516-793b-4905-8f5a-67a8a3c3d2e1" name="Changes" comment="delete linux, macos, web, windows" />
+    <list default="true" id="bebda516-793b-4905-8f5a-67a8a3c3d2e1" name="Changes" comment="delete linux, macos, web, windows">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,7 +37,7 @@
     "cidr.known.project.marker": "true",
     "dart.analysis.tool.window.visible": "false",
     "io.flutter.reload.alreadyRun": "true",
-    "last_opened_file_path": "C:/Projects/Flutter/FlutterStudy/test_flutter",
+    "last_opened_file_path": "C:/Projects/Flutter/FlutterStudy/naver_map_test",
     "settings.editor.selected.configurable": "AndroidSdkUpdater",
     "show.migrate.to.gradle.popup": "false"
   }
